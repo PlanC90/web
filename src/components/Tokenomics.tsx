@@ -12,7 +12,7 @@ import React from 'react';
                   <div className="absolute inset-0 bg-blue-500 rounded-full filter blur-xl opacity-20"></div>
                   <div className="relative z-10 bg-gray-800/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700">
                     <h3 className="text-2xl font-bold mb-6 text-blue-500 text-center">Total Supply</h3>
-                    <p className="text-4xl font-bold mb-8 text-center break-words">30,000,000,000,000 MEMEX</p>
+                    <p className="text-4xl font-bold mb-8 text-center break-words">30T MEMEX</p>
 
                     <div className="space-y-3">
                       <div className="flex items-center justify-between">
@@ -81,12 +81,12 @@ import React from 'react';
                     </div>
                   </div>
                 </div>
+                <div className="mt-8 p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg text-center lg:absolute lg:bottom-0 lg:left-0 lg:w-full">
+                  <p className="text-blue-400 font-medium text-sm">
+                    <span className="font-bold">Note:</span> Token burns will occur in phases to create deflationary pressure and increase token value over time.
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="mt-8 p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg text-center mx-4 lg:mx-0 lg:absolute lg:bottom-0 lg:left-0 lg:w-full">
-              <p className="text-blue-400 font-medium text-sm">
-                <span className="font-bold">Note:</span> Token burns will occur in phases to create deflationary pressure and increase token value over time.
-              </p>
             </div>
           </div>
         </section>
