@@ -192,7 +192,7 @@ function App() {
               “Memex for Everyone”
             </p>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-10">
-              Takumi😊Vision
+              MemeX😊Vision
             </p>
           </div>
         </section>
@@ -248,6 +248,7 @@ function App() {
               </a>
             </div>
             <p className="text-sm text-gray-400 mt-6">&copy; 2025 MemeX. All rights reserved.</p>
+            <p className="text-sm text-gray-400">🚀 Powered by Electra Protocol, ensuring the lowest fees, fastest transactions, and ultimate security!</p>
           </div>
         </footer>
       </div>
