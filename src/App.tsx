@@ -191,7 +191,11 @@ function App() {
         {/* Footer */}
         <footer className="relative z-10 bg-gray-900/80 py-12">
           <div className="container mx-auto px-4 text-center">
-            <p className="text-lg text-gray-400">Follow us on social media</p>
+            <p className="text-lg text-gray-400">Legal Disclaimer</p>
+            <p className="text-sm text-gray-400 mt-2">
+              None of the information on this website should be construed as providing legal or financial advice. Please note there are always risks associated with smart contracts. MemeX is not a registered broker, analyst or investment advisor. If you have purchased $MemeX, you agree that you are not purchasing a security or investment. The MemeX team can not be held liable for any losses or taxes you may incur. You also agree that the team is representing the token is community members, and cannot modify the contract due to it being renounced. Do conduct your own due diligence and consult your financial advisor before making any investment decision.
+            </p>
+            <p className="text-lg text-gray-400 mt-6">Follow us on social media</p>
             <div className="flex justify-center gap-8 mt-4">
               <a href="https://twitter.com/MemeXToken" target="_blank" rel="noopener noreferrer">
                 <Twitter className="w-6 h-6 text-blue-400 hover:text-blue-500" />
