@@ -48,23 +48,13 @@ const Community = () => {
     { handle: 'CryptoWolvi', name: 'CryptoWolvi', url: 'https://x.com/CryptoWolvi' },
   ];
 
-  const chunkArray = (arr, size) => {
-    const chunked = [];
-    for (let i = 0; i < arr.length; i += size) {
-      chunked.push(arr.slice(i, i + size));
-    }
-    return chunked;
-  };
-
-  const chunkedAccounts = chunkArray(twitterAccounts, 2);
-
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentCard((prevCard) => (prevCard + 1) % chunkedAccounts.length);
-    }, 2000); // Change every 2 seconds
+      setCurrentCard((prevCard) => (prevCard + 1) % twitterAccounts.length);
+    }, 2000);
 
     return () => clearInterval(interval);
-  }, [chunkedAccounts.length]);
+  }, [twitterAccounts.length]);
 
   return (
     <section id="community" className="relative z-10 py-20">
@@ -94,25 +84,36 @@ const Community = () => {
             <h3 className="text-2xl font-bold mb-4 text-center">Supporters on X</h3>
             <div className="relative overflow-hidden rounded-lg">
               <div className="transition-transform duration-500" style={{ transform: `translateX(-${currentCard * 100}%)` }}>
-                <div className="flex">
-                  {chunkedAccounts.map((accountChunk, index) => (
-                    <div key={index} className="flex-shrink-0 w-full flex justify-around">
-                      {accountChunk.map((account, i) => (
-                        <a
-                          key={account.handle}
-                          href={account.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`w-1/2 p-4 bg-gray-700/50 rounded-xl text-center ${i === 0 ? 'mr-2' : 'ml-2'}`}
-                        >
-                          <Twitter className="w-8 h-8 text-blue-500 mx-auto mb-2" />
-                          <p className="text-white font-bold">@{account.handle}</p>
-                          <p className="text-gray-400">{account.name}</p>
-                        </a>
-                      ))}
-                    </div>
+                <div className="flex md:hidden">
+                  {twitterAccounts.map((account, index) => (
+                    <a
+                      key={index}
+                      href={account.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-shrink-0 w-full p-4 bg-gray-700/50 rounded-xl text-center"
+                    >
+                      <Twitter className="w-8 h-8 text-blue-500 mx-auto mb-2" />
+                      <p className="text-white font-bold">@{account.handle}</p>
+                      <p className="text-gray-400">{account.name}</p>
+                    </a>
                   ))}
                 </div>
+                <div className="hidden md:flex">
+                {twitterAccounts.slice(currentCard, currentCard + 2).map((account, index) => (
+                  <a
+                    key={index}
+                    href={account.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`w-1/2 p-4 bg-gray-700/50 rounded-xl text-center ${index === 0 ? 'mr-2' : 'ml-2'}`}
+                  >
+                    <Twitter className="w-8 h-8 text-blue-500 mx-auto mb-2" />
+                    <p className="text-white font-bold">@{account.handle}</p>
+                    <p className="text-gray-400">{account.name}</p>
+                  </a>
+                ))}
+              </div>
               </div>
             </div>
           </div>
