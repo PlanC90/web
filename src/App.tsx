@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Twitter, MessageCircle, Download, ArrowRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Twitter, MessageCircle, Download, ArrowRight, ArrowUp } from 'lucide-react';
 import Features from './components/Features';
 import Tokenomics from './components/Tokenomics';
 import Community from './components/Community';
@@ -8,6 +8,7 @@ import Roadmap from './components/Roadmap';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showScrollButton, setShowScrollButton] = useState(false);
 
   const handleDownloadClick = () => {
     const deviceType = navigator.userAgent.toLowerCase();
@@ -25,6 +26,29 @@ function App() {
 
     window.location.href = targetUrl;
   };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowScrollButton(true);
+      } else {
+        setShowScrollButton(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
@@ -189,9 +213,6 @@ function App() {
               Memex is ready to revolutionize the blockchain world! 🚀
             </p>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-10">
-              “Memex for Everyone”
-            </p>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-10">
               MemeX😊Vision
             </p>
           </div>
@@ -252,6 +273,15 @@ function App() {
           </div>
         </footer>
       </div>
+      {showScrollButton && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-4 right-4 bg-blue-500 hover:bg-blue-600 text-white font-bold p-3 rounded-full shadow-lg transition-all cursor-pointer"
+          aria-label="Scroll to top"
+        >
+          <ArrowUp className="w-6 h-6" />
+        </button>
+      )}
     </div>
   );
 }

@@ -65,7 +65,49 @@ body {
   background: #3b82f6;
 }
 
-/* Token Distribution Symmetry */
-.token-distribution-container {
-  min-height: 500px; /* Adjust as needed */
+/* Scroll to top button */
+.fixed {
+  position: fixed;
+}
+
+.bottom-4 {
+  bottom: 1rem;
+}
+
+.right-4 {
+  right: 1rem;
+}
+
+.bg-blue-500 {
+  background-color: #3b82f6;
+}
+
+.hover\:bg-blue-600:hover {
+  background-color: #2563eb;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.p-3 {
+  padding: 0.75rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
