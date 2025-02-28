@@ -1,6 +1,11 @@
 import { Zap, Rocket, ShoppingCart, Flame } from 'lucide-react';
 
-const Features = ({ translate }) => {
+interface FeaturesProps {
+  translate: (key: string) => string;
+  language: string;
+}
+
+const Features = ({ translate, language }: FeaturesProps) => {
   return (
     <section id="features" className="relative z-10 py-20 bg-gray-900/50">
       <div className="container mx-auto px-4">

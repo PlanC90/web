@@ -5,6 +5,7 @@ import Tokenomics from './components/Tokenomics';
 import Community from './components/Community';
 import About from './components/About';
 import Roadmap from './components/Roadmap';
+import translations from './translate.json'; // Import translations
 
 // Define language options
 const languageOptions = {
@@ -21,43 +22,6 @@ const languageOptions = {
   hi: { name: 'Hindi', flag: '🇮🇳' },
   ha: { name: 'Hausa', flag: '🇳🇪' },
   zh: { name: 'Çince (Mandarin)', flag: '🇨🇳' },
-};
-
-// Define translations (example)
-const translations = {
-  en: {
-    "Super Fast, Super Cheap, Super Fun! 🚀": "Super Fast, Super Cheap, Super Fun! 🚀",
-    "Claim Your Airdrop Now": "Claim Your Airdrop Now",
-    "Download Wallet": "Download Wallet",
-    "Contract": "Contract",
-    "Features": "Features",
-    "Tokenomics": "Tokenomics",
-    "Community": "Community",
-    "About": "About",
-    "Ready to Join the Revolution?": "Ready to Join the Revolution?",
-    "Follow us on social media": "Follow us on social media",
-    "Our Founder's Vision": "Our Founder's Vision",
-    "MemeX: The Blockchain Ecosystem of the Future": "MemeX: The Blockchain Ecosystem of the Future",
-    "🔥 Airdrop Live Now! 🔥": "🔥 Airdrop Live Now! 🔥",
-    "MemeX: A 100% Decentralized Community Project on the Electraprotocol Network!": "MemeX: A 100% Decentralized Community Project on the Electraprotocol Network!",
-  },
-  tr: {
-    "Super Fast, Super Cheap, Super Fun! 🚀": "Süper Hızlı, Süper Ucuz, Süper Eğlenceli! 🚀",
-    "Claim Your Airdrop Now": "Airdrop'unuzu Şimdi Alın",
-    "Download Wallet": "Cüzdanı İndir",
-    "Contract": "Sözleşme",
-    "Features": "Özellikler",
-    "Tokenomics": "Tokenomikler",
-    "Community": "Topluluk",
-    "About": "Hakkında",
-    "Ready to Join the Revolution?": "Devrime Katılmaya Hazır Mısınız?",
-    "Follow us on social media": "Bizi sosyal medyada takip edin",
-    "Our Founder's Vision": "Kurucumuzun Vizyonu",
-    "MemeX: The Blockchain Ecosystem of the Future": "MemeX: Geleceğin Blockchain Ekosistemi",
-    "🔥 Airdrop Live Now! 🔥": "🔥 Airdrop Şimdi Canlı! 🔥",
-    "MemeX: A 100% Decentralized Community Project on the Electraprotocol Network!": "MemeX: Electraprotocol Ağı'nda %100 Merkezi Olmayan Topluluk Projesi!",
-  },
-  // Add translations for other languages
 };
 
 function App() {
@@ -107,7 +71,7 @@ function App() {
 
   // Function to translate text
   const translate = (key) => {
-    return translations[language][key] || key;
+    return translations[language]?.[key] || key;
   };
 
   return (
@@ -134,17 +98,15 @@ function App() {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:block">
-            <ul className="flex gap-8">
-              <li><a href="#features" className="hover:text-blue-400 transition-colors">{translate("Features")}</a></li>
-              <li><a href="#tokenomics" className="hover:text-blue-400 transition-colors">{translate("Tokenomics")}</a></li>
-              <li><a href="#community" className="hover:text-blue-400 transition-colors">{translate("Community")}</a></li>
-              <li><a href="#about" className="hover:text-blue-400 transition-colors">{translate("About")}</a></li>
-            </ul>
+          <nav className="hidden md:flex items-center gap-8">
+            <li><a href="#features" className="hover:text-blue-400 transition-colors">{translate("Features")}</a></li>
+            <li><a href="#tokenomics" className="hover:text-blue-400 transition-colors">{translate("Tokenomics")}</a></li>
+            <li><a href="#community" className="hover:text-blue-400 transition-colors">{translate("Community")}</a></li>
+            <li><a href="#about" className="hover:text-blue-400 transition-colors">{translate("About")}</a></li>
           </nav>
 
           {/* Language selector */}
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center">
             <select
               value={language}
               onChange={(e) => setLanguage(e.target.value)}
@@ -152,7 +114,7 @@ function App() {
             >
               {Object.entries(languageOptions).map(([key, value]) => (
                 <option key={key} value={key}>
-                  {value.flag} {value.name}
+                 {languageOptions[language].flag} {languageOptions[language].name}
                 </option>
               ))}
             </select>
@@ -181,19 +143,6 @@ function App() {
                 <li><a href="#tokenomics" className="block py-2 hover:text-blue-400 transition-colors" onClick={() => setIsMenuOpen(false)}>{translate("Tokenomics")}</a></li>
                 <li><a href="#community" className="block py-2 hover:text-blue-400 transition-colors" onClick={() => setIsMenuOpen(false)}>{translate("Community")}</a></li>
                 <li><a href="#about" className="block py-2 hover:text-blue-400 transition-colors" onClick={() => setIsMenuOpen(false)}>{translate("About")}</a></li>
-                <li>
-                  <select
-                    value={language}
-                    onChange={(e) => setLanguage(e.target.value)}
-                    className="bg-gray-800 text-white rounded-md p-2"
-                  >
-                    {Object.entries(languageOptions).map(([key, value]) => (
-                      <option key={key} value={key}>
-                        {value.flag} {value.name}
-                      </option>
-                    ))}
-                  </select>
-                </li>
               </ul>
             </div>
           )}
@@ -331,16 +280,16 @@ function App() {
         <Features translate={translate} language={language} />
 
         {/* Tokenomics Section */}
-        <Tokenomics translate={translate} language={language} />
+        <Tokenomics />
 
         {/* Roadmap Section */}
-        <Roadmap translate={translate} language={language} />
+        <Roadmap />
 
         {/* Community Section */}
-        <Community translate={translate} language={language} />
+        <Community />
 
         {/* About Section */}
-        <About translate={translate} language={language} />
+        <About />
 
         {/* Footer */}
         <footer className="relative z-10 bg-gray-900/80 py-12">
