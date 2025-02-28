@@ -178,6 +178,46 @@ function App() {
           </div>
         </section>
 
+        {/* Founder's Mission Section */}
+        <section className="relative z-10 py-20 bg-gray-900/50">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-4xl font-bold mb-6">Our Founder's Mission</h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              Memex: The Blockchain Ecosystem of the Future
+            </p>
+            <p className="text-gray-400 max-w-3xl mx-auto mt-4">
+              Memex is more than just a token; it is a project aimed at building a large global community, integrating into multiple blockchain networks with a multi-chain structure, and achieving listings on all exchanges. With true adoption, it seeks to differentiate itself from other coins and tokens by enabling accessibility even in small village markets in local and international regions, allowing purchases with minimal gas fees.
+            </p>
+            <p className="text-gray-400 max-w-3xl mx-auto mt-4">
+              In line with this vision, Memex would distribute tokens to 1 million people for free to ensure widespread adoption and will eventually evolve into a Layer 2 solution known as MemexChain. This new chain will host millions of tokens and offer unique use cases.
+            </p>
+            <p className="text-gray-400 max-w-3xl mx-auto mt-4">
+              For example, a business with three vehicles can pre-purchase fixed-price XBenzin tokens at a discount and distribute them to its employees, allowing seamless fuel purchases. Similarly, a school cafeteria can sell fixed-price, pre-discounted XKantin tokens, enabling students to make quick purchases while allowing the cafeteria owner to foresee sales and manage stock more efficiently.
+            </p>
+            <p className="text-gray-400 max-w-3xl mx-auto mt-4">
+              One of Memex’s greatest ambitions is to rank among the top 100 cryptocurrencies, then climb into the top 10, proving itself as the most functional meme token. A determined leader and a committed team can achieve anything. Perhaps by the time these words are read, our goals will have been accomplished, and I will have passed the torch to the next generation of leaders.
+            </p>
+            <p className="text-gray-400 max-w-3xl mx-auto mt-4">
+              It must not be forgotten that Memex is the product of a global team of dedicated individuals. Our team members, professionals from different countries, are devoted to strengthening Memex with the most advanced blockchain technologies.
+            </p>
+            <p className="text-gray-400 max-w-3xl mx-auto mt-4">
+              Another major goal of Memex is to bring together truly honest and competent projects, unifying blockchain ecosystems under Memex to create the most powerful and advanced token — not copying others but setting the standard for innovation.
+            </p>
+            <p className="text-gray-400 max-w-3xl mx-auto mt-4">
+              To have a say in the Memex community, holding the highest amount of tokens will become essential in the future. Yes, Memex may be a meme token, but it has committed itself to being the most functional of all meme tokens.
+            </p>
+            <p className="text-gray-400 max-w-3xl mx-auto mt-4">
+              Additionally, MemexChain will introduce various solutions to make NFTs more usable. Visual content marketplaces will be able to license each image with MemexChain NFT, ensuring the protection of digital assets. Companies will be able to send invoices as NFTs, guaranteeing their authenticity and preventing any modifications. These technologies will make MemexChain a real-world utility blockchain, far beyond a mere speculative asset.
+            </p>
+            <p className="text-gray-400 max-w-3xl mx-auto mt-4">
+              Memex is ready to revolutionize the blockchain world! 🚀
+            </p>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto mt-4">
+              “Memex for Everyone”
+            </p>
+          </div>
+        </section>
+
         {/* Features Section */}
         <Features />
 
