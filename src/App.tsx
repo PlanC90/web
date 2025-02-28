@@ -6,9 +6,64 @@ import Community from './components/Community';
 import About from './components/About';
 import Roadmap from './components/Roadmap';
 
+// Define language options
+const languageOptions = {
+  en: { name: 'English', flag: '🇺🇸🇬🇧' },
+  tr: { name: 'Türkçe', flag: '🇹🇷' },
+  es: { name: 'Español', flag: '🇪🇸' },
+  fr: { name: 'Français', flag: '🇫🇷' },
+  de: { name: 'Almanca', flag: '🇩🇪' },
+  ja: { name: 'Japanese', flag: '🇯🇵' },
+  ar: { name: 'Arabic', flag: '🇦🇪' },
+  bn: { name: 'Bengali', flag: '🇧🇩' },
+  pt: { name: 'Português', flag: '🇵🇹🇧🇷' },
+  ru: { name: 'Russian', flag: '🇷🇺' },
+  hi: { name: 'Hindi', flag: '🇮🇳' },
+  ha: { name: 'Hausa', flag: '🇳🇪' },
+  zh: { name: 'Çince (Mandarin)', flag: '🇨🇳' },
+};
+
+// Define translations (example)
+const translations = {
+  en: {
+    "Super Fast, Super Cheap, Super Fun! 🚀": "Super Fast, Super Cheap, Super Fun! 🚀",
+    "Claim Your Airdrop Now": "Claim Your Airdrop Now",
+    "Download Wallet": "Download Wallet",
+    "Contract": "Contract",
+    "Features": "Features",
+    "Tokenomics": "Tokenomics",
+    "Community": "Community",
+    "About": "About",
+    "Ready to Join the Revolution?": "Ready to Join the Revolution?",
+    "Follow us on social media": "Follow us on social media",
+    "Our Founder's Vision": "Our Founder's Vision",
+    "MemeX: The Blockchain Ecosystem of the Future": "MemeX: The Blockchain Ecosystem of the Future",
+    "🔥 Airdrop Live Now! 🔥": "🔥 Airdrop Live Now! 🔥",
+    "MemeX: A 100% Decentralized Community Project on the Electraprotocol Network!": "MemeX: A 100% Decentralized Community Project on the Electraprotocol Network!",
+  },
+  tr: {
+    "Super Fast, Super Cheap, Super Fun! 🚀": "Süper Hızlı, Süper Ucuz, Süper Eğlenceli! 🚀",
+    "Claim Your Airdrop Now": "Airdrop'unuzu Şimdi Alın",
+    "Download Wallet": "Cüzdanı İndir",
+    "Contract": "Sözleşme",
+    "Features": "Özellikler",
+    "Tokenomics": "Tokenomikler",
+    "Community": "Topluluk",
+    "About": "Hakkında",
+    "Ready to Join the Revolution?": "Devrime Katılmaya Hazır Mısınız?",
+    "Follow us on social media": "Bizi sosyal medyada takip edin",
+    "Our Founder's Vision": "Kurucumuzun Vizyonu",
+    "MemeX: The Blockchain Ecosystem of the Future": "MemeX: Geleceğin Blockchain Ekosistemi",
+    "🔥 Airdrop Live Now! 🔥": "🔥 Airdrop Şimdi Canlı! 🔥",
+    "MemeX: A 100% Decentralized Community Project on the Electraprotocol Network!": "MemeX: Electraprotocol Ağı'nda %100 Merkezi Olmayan Topluluk Projesi!",
+  },
+  // Add translations for other languages
+};
+
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showScrollButton, setShowScrollButton] = useState(false);
+  const [language, setLanguage] = useState('en'); // Default language
 
   const handleDownloadClick = () => {
     const deviceType = navigator.userAgent.toLowerCase();
@@ -50,6 +105,11 @@ function App() {
     };
   }, []);
 
+  // Function to translate text
+  const translate = (key) => {
+    return translations[language][key] || key;
+  };
+
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* Background Elements */}
@@ -76,12 +136,27 @@ function App() {
           {/* Desktop Navigation */}
           <nav className="hidden md:block">
             <ul className="flex gap-8">
-              <li><a href="#features" className="hover:text-blue-400 transition-colors">Features</a></li>
-              <li><a href="#tokenomics" className="hover:text-blue-400 transition-colors">Tokenomics</a></li>
-              <li><a href="#community" className="hover:text-blue-400 transition-colors">Community</a></li>
-              <li><a href="#about" className="hover:text-blue-400 transition-colors">About</a></li>
+              <li><a href="#features" className="hover:text-blue-400 transition-colors">{translate("Features")}</a></li>
+              <li><a href="#tokenomics" className="hover:text-blue-400 transition-colors">{translate("Tokenomics")}</a></li>
+              <li><a href="#community" className="hover:text-blue-400 transition-colors">{translate("Community")}</a></li>
+              <li><a href="#about" className="hover:text-blue-400 transition-colors">{translate("About")}</a></li>
             </ul>
           </nav>
+
+          {/* Language selector */}
+          <div className="hidden md:block">
+            <select
+              value={language}
+              onChange={(e) => setLanguage(e.target.value)}
+              className="bg-gray-800 text-white rounded-md p-2"
+            >
+              {Object.entries(languageOptions).map(([key, value]) => (
+                <option key={key} value={key}>
+                  {value.flag} {value.name}
+                </option>
+              ))}
+            </select>
+          </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -102,10 +177,23 @@ function App() {
           {isMenuOpen && (
             <div className="absolute top-full left-0 right-0 bg-gray-900 p-4 md:hidden z-50">
               <ul className="flex flex-col gap-4">
-                <li><a href="#features" className="block py-2 hover:text-blue-400 transition-colors" onClick={() => setIsMenuOpen(false)}>Features</a></li>
-                <li><a href="#tokenomics" className="block py-2 hover:text-blue-400 transition-colors" onClick={() => setIsMenuOpen(false)}>Tokenomics</a></li>
-                <li><a href="#community" className="block py-2 hover:text-blue-400 transition-colors" onClick={() => setIsMenuOpen(false)}>Community</a></li>
-                <li><a href="#about" className="block py-2 hover:text-blue-400 transition-colors" onClick={() => setIsMenuOpen(false)}>About</a></li>
+                <li><a href="#features" className="block py-2 hover:text-blue-400 transition-colors" onClick={() => setIsMenuOpen(false)}>{translate("Features")}</a></li>
+                <li><a href="#tokenomics" className="block py-2 hover:text-blue-400 transition-colors" onClick={() => setIsMenuOpen(false)}>{translate("Tokenomics")}</a></li>
+                <li><a href="#community" className="block py-2 hover:text-blue-400 transition-colors" onClick={() => setIsMenuOpen(false)}>{translate("Community")}</a></li>
+                <li><a href="#about" className="block py-2 hover:text-blue-400 transition-colors" onClick={() => setIsMenuOpen(false)}>{translate("About")}</a></li>
+                <li>
+                  <select
+                    value={language}
+                    onChange={(e) => setLanguage(e.target.value)}
+                    className="bg-gray-800 text-white rounded-md p-2"
+                  >
+                    {Object.entries(languageOptions).map(([key, value]) => (
+                      <option key={key} value={key}>
+                        {value.flag} {value.name}
+                      </option>
+                    ))}
+                  </select>
+                </li>
               </ul>
             </div>
           )}
@@ -114,18 +202,17 @@ function App() {
         {/* Hero Section */}
         <section className="relative z-10 container mx-auto px-4 py-20 flex flex-col items-center text-center">
           <div className="animate-pulse inline-block px-4 py-1 bg-blue-500/10 border border-blue-500/30 rounded-full text-blue-400 text-sm font-medium mb-6">
-            🔥 Airdrop Live Now! 🔥
+            {translate("🔥 Airdrop Live Now! 🔥")}
           </div>
           <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
-            Super Fast, Super Cheap, <br />
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600">Super Fun! 🚀</span>
+            {translate("Super Fast, Super Cheap, Super Fun! 🚀")}
           </h1>
           <p className="text-xl text-gray-400 max-w-2xl mb-4">
             The next generation meme token with real-world utility. Ultra-fast transfers,
             near-zero fees, and a community-driven ecosystem.
           </p>
           <p className="text-xl text-blue-400 max-w-3xl mx-auto mb-10 font-bold">
-            MemeX: A 100% Decentralized Community Project on the Electraprotocol Network!
+            {translate("MemeX: A 100% Decentralized Community Project on the Electraprotocol Network!")}
           </p>
 
           {/* Holder Count */}
@@ -146,7 +233,7 @@ function App() {
               onClick={handleDownloadClick}
               className="bg-transparent border-2 border-blue-500 text-blue-500 hover:bg-blue-500/10 font-bold px-8 py-4 rounded-full transition-all flex items-center justify-center"
             >
-              <Download className="mr-2 w-5 h-5" /> Download Wallet
+              <Download className="mr-2 w-5 h-5" /> {translate("Download Wallet")}
             </button>
             <a
               href="https://electraprotocol.network/omni/property/199/"
@@ -154,7 +241,7 @@ function App() {
               rel="noopener noreferrer"
               className="bg-transparent border-2 border-blue-500 text-blue-500 hover:bg-blue-500/10 font-bold px-8 py-4 rounded-full transition-all flex items-center justify-center"
             >
-              Contract
+              {translate("Contract")}
             </a>
           </div>
 
@@ -181,9 +268,9 @@ function App() {
         {/* Vision Section */}
         <section className="relative z-10 py-20 bg-gradient-to-b from-transparent to-blue-900/20">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-4xl font-bold mb-6">Our Founder's Vision</h2>
+            <h2 className="text-4xl font-bold mb-6">{translate("Our Founder's Vision")}</h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-10">
-              Memex: The Blockchain Ecosystem of the Future
+              {translate("MemeX: The Blockchain Ecosystem of the Future")}
             </p>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-10">
               Memex is more than just a token; it is a project aimed at building a large global community, integrating into multiple blockchain networks with a multi-chain structure, and achieving listings on all exchanges. With true adoption, it seeks to differentiate itself from other coins and tokens by enabling accessibility even in small village markets in local and international regions, allowing purchases with minimal gas fees.
@@ -213,6 +300,9 @@ function App() {
               Memex is ready to revolutionize the blockchain world! 🚀
             </p>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-10">
+              “Memex for Everyone”
+            </p>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-10">
               MemeX😊Vision
             </p>
           </div>
@@ -221,7 +311,7 @@ function App() {
         {/* CTA Section */}
         <section className="relative z-10 py-20 bg-gradient-to-b from-transparent to-blue-900/20">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-4xl font-bold mb-6">Ready to Join the Revolution?</h2>
+            <h2 className="text-4xl font-bold mb-6">{translate("Ready to Join the Revolution?")}</h2>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-10">
               Don't miss out on your chance to claim 2,000,000 MEMEX tokens in our limited-time airdrop.
             </p>
@@ -232,25 +322,25 @@ function App() {
               rel="noopener noreferrer"
               className="inline-block bg-blue-500 hover:bg-blue-600 text-black font-bold px-10 py-4 rounded-full text-lg transition-all transform hover:scale-105 shadow-lg shadow-blue-500/30"
             >
-              Claim Your Airdrop Now
+              {translate("Claim Your Airdrop Now")}
             </a>
           </div>
         </section>
 
         {/* Features Section */}
-        <Features />
+        <Features translate={translate} language={language} />
 
         {/* Tokenomics Section */}
-        <Tokenomics />
+        <Tokenomics translate={translate} language={language} />
 
         {/* Roadmap Section */}
-        <Roadmap />
+        <Roadmap translate={translate} language={language} />
 
         {/* Community Section */}
-        <Community />
+        <Community translate={translate} language={language} />
 
         {/* About Section */}
-        <About />
+        <About translate={translate} language={language} />
 
         {/* Footer */}
         <footer className="relative z-10 bg-gray-900/80 py-12">
@@ -259,7 +349,7 @@ function App() {
             <p className="text-sm text-gray-400 mt-2">
               None of the information on this website should be construed as providing legal or financial advice. Please note there are always risks associated with smart contracts. MemeX is not a registered broker, analyst or investment advisor. If you have purchased $MemeX, you agree that you are not purchasing a security or investment. The MemeX team can not be held liable for any losses or taxes you may incur. You also agree that the team is representing the token is community members, and cannot modify the contract due to it being renounced. Do conduct your own due diligence and consult your financial advisor before making any investment decision.
             </p>
-            <p className="text-lg text-gray-400 mt-6">Follow us on social media</p>
+            <p className="text-lg text-gray-400 mt-6">{translate("Follow us on social media")}</p>
             <div className="flex justify-center gap-8 mt-4">
               <a href="https://twitter.com/MemeXToken" target="_blank" rel="noopener noreferrer">
                 <Twitter className="w-6 h-6 text-blue-400 hover:text-blue-500" />
