@@ -11,14 +11,19 @@ function App() {
 
   const handleDownloadClick = () => {
     const deviceType = navigator.userAgent.toLowerCase();
-    const walletUrls = {
-      android: 'https://play.google.com/store/apps/details?id=com.electraprotocol.omnixep.wallet',
-      ios: 'https://apps.apple.com/us/app/omnixep-wallet/id6739203200',
-      windows: 'https://github.com/ElectraProtocol/Electra-Protocol-data/releases/download/omnixep-launcher-1.0.0/OmniXEP-Pro-Windows-installer.exe',
-      mac: 'https://github.com/ElectraProtocol/Electra-Protocol-data/releases/download/omnixep-launcher-1.0.0/OmniXEP-Pro-macOS-installer.dmg',
-      unknown: 'https://play.google.com/store/apps/details?id=com.electraprotocol.omnixep.wallet'
-    };
-    window.location.href = walletUrls[deviceType] || walletUrls.unknown;
+    let targetUrl = 'https://play.google.com/store/apps/details?id=com.electraprotocol.omnixep.wallet';
+
+    if (deviceType.includes('android')) {
+      targetUrl = 'https://play.google.com/store/apps/details?id=com.electraprotocol.omnixep.wallet';
+    } else if (deviceType.includes('ios') || deviceType.includes('iphone') || deviceType.includes('ipad')) {
+      targetUrl = 'https://apps.apple.com/us/app/omnixep-wallet/id6739203200';
+    } else if (deviceType.includes('windows')) {
+      targetUrl = 'https://github.com/ElectraProtocol/Electra-Protocol-data/releases/download/omnixep-launcher-1.0.0/OmniXEP-Pro-Windows-installer.exe';
+    } else if (deviceType.includes('mac')) {
+      targetUrl = 'https://github.com/ElectraProtocol/Electra-Protocol-data/releases/download/omnixep-launcher-1.0.0/OmniXEP-Pro-macOS-installer.dmg';
+    }
+
+    window.location.href = targetUrl;
   };
 
   return (
