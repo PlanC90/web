@@ -108,11 +108,6 @@ const Tokenomics = () => {
                 </div>
               </div>
             </div>
-            <div className="mt-8 p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg text-center lg:absolute lg:bottom-0 lg:left-0 lg:w-full">
-              <p className="text-blue-400 font-medium text-sm">
-                <span className="font-bold">Note:</span> Token burns will occur in phases to create deflationary pressure and increase token value over time.
-              </p>
-            </div>
           </div>
         </div>
       </div>

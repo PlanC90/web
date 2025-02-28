@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Twitter, MessageCircle, Download, ArrowRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Twitter, MessageCircle, Download, ArrowRight, ArrowUp } from 'lucide-react';
 import Features from './components/Features';
 import Tokenomics from './components/Tokenomics';
 import Community from './components/Community';
@@ -8,6 +8,7 @@ import Roadmap from './components/Roadmap';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showScrollButton, setShowScrollButton] = useState(false);
 
   const handleDownloadClick = () => {
     const deviceType = navigator.userAgent.toLowerCase();
@@ -25,6 +26,29 @@ function App() {
 
     window.location.href = targetUrl;
   };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 200) {
+        setShowScrollButton(true);
+      } else {
+        setShowScrollButton(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
@@ -187,6 +211,17 @@ function App() {
             </a>
           </div>
         </section>
+
+        {/* Scroll to Top Button */}
+        {showScrollButton && (
+          <button
+            onClick={scrollToTop}
+            className="fixed bottom-8 right-8 bg-blue-500 hover:bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center z-50"
+            aria-label="Scroll to top"
+          >
+            <ArrowUp className="w-6 h-6" />
+          </button>
+        )}
 
         {/* Footer */}
         <footer className="relative z-10 bg-gray-900/80 py-12">

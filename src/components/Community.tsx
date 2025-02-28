@@ -117,6 +117,18 @@ const Community = () => {
             </div>
           </div>
 
+          <div className="mt-8 border-t border-gray-700 pt-8">
+            <h3 className="text-2xl font-bold mb-4 text-center">Join the MemeX Army!</h3>
+            <p className="text-gray-400 text-center">
+              MemeX, founded on January 2, 2025, was immediately released to the community, who then formed the MemeX ARMY. In this short time, MemeX has surpassed 130,000+ holders. Join the MemeX ARMY community now!
+            </p>
+            <div className="text-center mt-4">
+              <a href="https://t.me/memexarmyy" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-500 font-bold">
+                Join MemeX ARMY
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg text-center">
             <p className="text-blue-400 font-medium">
               Join now and be part of the fastest-growing meme token community!
