@@ -232,14 +232,15 @@ function App() {
             </p>
             <p className="text-lg text-gray-400 mt-6">Follow us on social media</p>
             <div className="flex justify-center gap-8 mt-4">
-              <a href="https://twitter.com/MemeXToken" target="_blank" rel="noopener noreferrer">
+              <a href="https://x.com/memexairdrop" target="_blank" rel="noopener noreferrer">
                 <Twitter className="w-6 h-6 text-blue-400 hover:text-blue-500" />
               </a>
-              <a href="https://t.me/memextoken" target="_blank" rel="noopener noreferrer">
+              <a href="https://t.me/memexairdropchannel" target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="w-6 h-6 text-blue-400 hover:text-blue-500" />
               </a>
             </div>
-            <p className="text-sm text-gray-400 mt-6">&copy; 2025 MemeX. All rights reserved.</p>
+            <p className="text-sm text-gray-400 mt-6">© 2025 MemeX. All rights reserved.</p>
+            <p className="text-sm text-gray-400 mt-2">🚀 Powered by Electra Protocol, ensuring the lowest fees, fastest transactions, and ultimate security!</p>
           </div>
         </footer>
       </div>
