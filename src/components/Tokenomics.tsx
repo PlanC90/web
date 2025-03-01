@@ -1,113 +1,100 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
 
 const Tokenomics = () => {
   const totalSupplyRef = useRef(null);
   const tokenDistributionRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const handleResize = () => {
+    setIsMobile(window.innerWidth < 768); // Adjust breakpoint as needed
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Initial check
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const setEqualHeight = () => {
-      if (totalSupplyRef.current && tokenDistributionRef.current) {
+      if (totalSupplyRef.current && tokenDistributionRef.current && !isMobile) {
         const totalSupplyHeight = totalSupplyRef.current.offsetHeight;
         tokenDistributionRef.current.style.height = `${totalSupplyHeight}px`;
       }
     };
 
-    // Set initial height
-    setEqualHeight();
-
-    // Update height on window resize
-    window.addEventListener('resize', setEqualHeight);
-
-    // Cleanup listener on component unmount
-    return () => {
-      window.removeEventListener('resize', setEqualHeight);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768); // Adjust breakpoint as needed
     };
-  }, []);
+
+    setEqualHeight();
+    window.addEventListener('resize', setEqualHeight);
+    return () => window.removeEventListener('resize', setEqualHeight);
+  }, [isMobile]);
+
+  const data = [
+    { name: 'Airdrop', value: 20, color: '#2563EB' }, // Blue
+    { name: 'Marketing', value: 16.7, color: '#10B981' }, // Green
+    { name: 'Development', value: 20, color: '#EAB308' }, // Yellow
+    { name: 'Burn', value: 43.3, color: '#DC2626' }, // Red
+  ];
+
+  const RADIAN = Math.PI / 180;
+  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.6; // Adjusted label position
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+    return (
+      <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central" fontSize={14} fontWeight="bold"> {/* Adjusted font size and weight */}
+        {`${data[index].name} ${(percent * 100).toFixed(0)}%`}
+      </text>
+    );
+  };
 
   return (
     <section id="tokenomics" className="relative z-10 py-20">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold mb-16 text-center">Tokenomics</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-          {/* Left Side: Total Supply and Allocation Percentages */}
-          <div className="flex flex-col justify-between" style={{ display: 'flex', flexDirection: 'column' }}>
-            <div className="relative h-full" ref={totalSupplyRef}>
+        <h2 className="text-4xl font-bold mb-12 text-center">Tokenomics</h2>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          {/* Left Side: Total Supply */}
+          <div className="flex flex-col justify-center items-center">
+            <div className="relative w-full"> {/* Make Total Supply take full width */}
               <div className="absolute inset-0 bg-blue-500 rounded-full filter blur-xl opacity-20"></div>
-              <div className="relative z-10 bg-gray-800/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700 h-full" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                <div>
-                  <h3 className="text-2xl font-bold mb-6 text-blue-500 text-center">Total Supply</h3>
-                  <p className="text-4xl font-bold mb-8 text-center break-words">30T MEMEX</p>
-                </div>
-
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-400">Airdrop</span>
-                    <span className="font-bold text-lg">20%</span>
-                  </div>
-                  <div className="w-full bg-gray-700 rounded-full h-3">
-                    <div className="bg-blue-500 h-3 rounded-full" style={{ width: '20%' }}></div>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-400">Marketing</span>
-                    <span className="font-bold text-lg">16.7%</span>
-                  </div>
-                  <div className="w-full bg-gray-700 rounded-full h-3">
-                    <div className="bg-blue-500 h-3 rounded-full" style={{ width: '16.7%' }}></div>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-400">Development</span>
-                    <span className="font-bold text-lg">20%</span>
-                  </div>
-                  <div className="w-full bg-gray-700 rounded-full h-3">
-                    <div className="bg-blue-500 h-3 rounded-full" style={{ width: '20%' }}></div>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-400">Burn</span>
-                    <span className="font-bold text-lg">43.3%</span>
-                  </div>
-                  <div className="w-full bg-gray-700 rounded-full h-3">
-                    <div className="bg-blue-500 h-3 rounded-full" style={{ width: '43.3%' }}></div>
-                  </div>
-                </div>
+              <div className="relative z-10 bg-gray-800/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700 text-center">
+                <h3 className="text-xl font-bold mb-4 text-blue-500 md:text-base">Total Supply</h3>
+                <p className="text-4xl font-bold mb-6 break-words md:text-3xl">30T MEMEX</p>
               </div>
             </div>
           </div>
 
-          {/* Right Side: Token Distribution Details */}
-          <div className="flex flex-col justify-start">
-            <div className="relative h-full" ref={tokenDistributionRef}>
-              <div className="bg-gray-800/50 backdrop-blur-sm p-4 rounded-2xl border border-gray-700 h-full" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                <h3 className="text-2xl font-bold mb-4 text-center">Token Distribution</h3>
-                <div className="space-y-3">
-                  <div className="bg-gray-800/50 backdrop-blur-sm p-4 rounded-2xl border border-gray-700">
-                    <h4 className="font-bold text-md">Airdrop Allocation</h4>
-                    <p className="text-gray-400 text-sm">6,000,000,000,000 MEMEX (20%)</p>
-                    <p className="text-gray-500 text-xs mt-1">Free distribution to early community members.</p>
-                  </div>
-
-                  <div className="bg-gray-800/50 backdrop-blur-sm p-4 rounded-2xl border border-gray-700">
-                    <h4 className="font-bold text-md">Marketing & Promotion</h4>
-                    <p className="text-gray-400 text-sm">5,000,000,000,000 MEMEX (16.7%)</p>
-                    <p className="text-gray-500 text-xs mt-1">Used for exchange listings, partnerships, and community growth.</p>
-                  </div>
-
-                  <div className="bg-gray-800/50 backdrop-blur-sm p-4 rounded-2xl border border-gray-700">
-                    <h4 className="font-bold text-md">Development & Team</h4>
-                    <p className="text-gray-400 text-sm">6,000,000,000,000 MEMEX (20%)</p>
-                    <p className="text-gray-500 text-xs mt-1">Allocated for ongoing development and team incentives.</p>
-                  </div>
-
-                  <div className="bg-gray-800/50 backdrop-blur-sm p-4 rounded-2xl border border-gray-700">
-                    <h4 className="font-bold text-md">Burn Allocation</h4>
-                    <p className="text-gray-400 text-sm">13,000,000,000,000 MEMEX (43.3%)</p>
-                    <p className="text-gray-500 text-xs mt-1">To reduce supply and increase scarcity.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+          {/* Right Side: Donut Chart */}
+          <div className="flex flex-col items-center">
+            <h3 className="text-xl font-bold mb-4 text-center md:text-base">Allocation</h3>
+            <ResponsiveContainer width="100%" height={400}>
+              <PieChart>
+                <Pie
+                  data={data}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={false}
+                  label={renderCustomizedLabel}
+                  outerRadius={160}  // Increased outer radius
+                  innerRadius={50} // Added inner radius for donut effect
+                  fill="#8884d8"
+                  dataKey="value"
+                >
+                  {data.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+                <Legend align="center" verticalAlign="bottom" wrapperStyle={{ fontSize: '16px' }} /> {/* Increased font size */}
+              </PieChart>
+            </ResponsiveContainer>
           </div>
         </div>
       </div>
