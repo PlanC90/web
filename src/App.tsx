@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Twitter, MessageCircle, Download, ArrowRight, ArrowUp } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Twitter, MessageCircle, Download, ArrowRight, ArrowUp, Menu, Home, BarChart2, Users, Info, Zap } from 'lucide-react';
 import Features from './components/Features';
 import Tokenomics from './components/Tokenomics';
 import Community from './components/Community';
@@ -7,7 +7,6 @@ import About from './components/About';
 import Roadmap from './components/Roadmap';
 
 function App() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showScrollButton, setShowScrollButton] = useState(false);
 
   const handleDownloadClick = () => {
@@ -82,33 +81,6 @@ function App() {
               <li><a href="#about" className="hover:text-blue-400 transition-colors">About</a></li>
             </ul>
           </nav>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-white focus:outline-none"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              {isMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
-
-          {/* Mobile Menu */}
-          {isMenuOpen && (
-            <div className="absolute top-full left-0 right-0 bg-gray-900 p-4 md:hidden z-50">
-              <ul className="flex flex-col gap-4">
-                <li><a href="#features" className="block py-2 hover:text-blue-400 transition-colors" onClick={() => setIsMenuOpen(false)}>Features</a></li>
-                <li><a href="#tokenomics" className="block py-2 hover:text-blue-400 transition-colors" onClick={() => setIsMenuOpen(false)}>Tokenomics</a></li>
-                <li><a href="#community" className="block py-2 hover:text-blue-400 transition-colors" onClick={() => setIsMenuOpen(false)}>Community</a></li>
-                <li><a href="#about" className="block py-2 hover:text-blue-400 transition-colors" onClick={() => setIsMenuOpen(false)}>About</a></li>
-              </ul>
-            </div>
-          )}
         </header>
 
         {/* Hero Section */}
@@ -130,7 +102,7 @@ function App() {
 
           {/* Holder Count */}
           <div className="text-6xl font-extrabold text-blue-400 mb-8">
-            130,000+ Holders
+            135,000+ Holders
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-16">
@@ -223,6 +195,28 @@ function App() {
           </button>
         )}
 
+        {/* Mobile Bottom Navigation */}
+        <nav className="fixed bottom-0 left-0 right-0 bg-gray-900/80 backdrop-blur-md z-50 md:hidden">
+          <div className="container mx-auto px-4 py-3 flex justify-around items-center">
+            <a href="#features" className="flex flex-col items-center text-gray-400 hover:text-blue-400 transition-colors">
+              <Zap className="w-5 h-5 mb-1" />
+              <span className="text-xs">Features</span>
+            </a>
+            <a href="#tokenomics" className="flex flex-col items-center text-gray-400 hover:text-blue-400 transition-colors">
+              <BarChart2 className="w-5 h-5 mb-1" />
+              <span className="text-xs">Tokenomics</span>
+            </a>
+            <a href="#community" className="flex flex-col items-center text-gray-400 hover:text-blue-400 transition-colors">
+              <Users className="w-5 h-5 mb-1" />
+              <span className="text-xs">Community</span>
+            </a>
+            <a href="#about" className="flex flex-col items-center text-gray-400 hover:text-blue-400 transition-colors">
+              <Info className="w-5 h-5 mb-1" />
+              <span className="text-xs">About</span>
+            </a>
+          </div>
+        </nav>
+
         {/* Footer */}
         <footer className="relative z-10 bg-gray-900/80 py-12">
           <div className="container mx-auto px-4 text-center">
@@ -239,7 +233,7 @@ function App() {
                 <MessageCircle className="w-6 h-6 text-blue-400 hover:text-blue-500" />
               </a>
             </div>
-            <p className="text-sm text-gray-400 mt-6">© 2025 MemeX. All rights reserved.</p>
+            <p className="text-sm text-gray-400 mt-6">&copy; 2025 MemeX. All rights reserved.</p>
             <p className="text-sm text-gray-400 mt-2">🚀 Powered by Electra Protocol, ensuring the lowest fees, fastest transactions, and ultimate security!</p>
           </div>
         </footer>
