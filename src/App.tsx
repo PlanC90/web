@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Twitter, MessageCircle, Download, ArrowRight, ArrowUp, Menu, Home, BarChart2, Users, Info, Zap } from 'lucide-react';
 import Features from './components/Features';
 import Tokenomics from './components/Tokenomics';
@@ -75,6 +75,7 @@ function App() {
           {/* Desktop Navigation */}
           <nav className="hidden md:block">
             <ul className="flex gap-8">
+              <li><a href="#" className="hover:text-blue-400 transition-colors">Home</a></li>
               <li><a href="#features" className="hover:text-blue-400 transition-colors">Features</a></li>
               <li><a href="#tokenomics" className="hover:text-blue-400 transition-colors">Tokenomics</a></li>
               <li><a href="#community" className="hover:text-blue-400 transition-colors">Community</a></li>
@@ -188,8 +189,9 @@ function App() {
         {showScrollButton && (
           <button
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 bg-blue-500 hover:bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center z-50"
+            className="fixed bottom-[60px] right-8 bg-blue-500 hover:bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center z-51"
             aria-label="Scroll to top"
+            style={{zIndex: 51}}
           >
             <ArrowUp className="w-6 h-6" />
           </button>
@@ -198,6 +200,10 @@ function App() {
         {/* Mobile Bottom Navigation */}
         <nav className="fixed bottom-0 left-0 right-0 bg-gray-900/80 backdrop-blur-md z-50 md:hidden">
           <div className="container mx-auto px-4 py-3 flex justify-around items-center">
+            <a href="#" className="flex flex-col items-center text-gray-400 hover:text-blue-400 transition-colors">
+              <Home className="w-5 h-5 mb-1" />
+              <span className="text-xs">Home</span>
+            </a>
             <a href="#features" className="flex flex-col items-center text-gray-400 hover:text-blue-400 transition-colors">
               <Zap className="w-5 h-5 mb-1" />
               <span className="text-xs">Features</span>
@@ -216,6 +222,13 @@ function App() {
             </a>
           </div>
         </nav>
+
+        {/* Contact Information */}
+        <div className="relative z-10 container mx-auto px-4 mt-8 text-center flex items-center justify-center h-12">
+          <p className="text-[1.45rem] text-gray-400 leading-tight"> {/* Increased font size to 1.45rem and added leading-tight */}
+            Need assistance? 🚀 DM us on <a href="https://x.com/memexairdrop" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-500">X (Twitter)</a> for direct support! 🔒
+          </p>
+        </div>
 
         {/* Footer */}
         <footer className="relative z-10 bg-gray-900/80 py-12">
